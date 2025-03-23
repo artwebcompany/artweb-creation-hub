@@ -5,11 +5,11 @@
 artWeb adalah perusahaan penyedia jasa pembuatan website profesional berbasis di Yogyakarta. Website ini dibangun dengan React, TypeScript, Tailwind CSS, dan shadcn/ui.
 
 ## URL Proyek
-**Live URL**: https://lovable.dev/projects/bdd1004e-1797-4be6-8cf6-9d620c173b8e
+**Live URL**: https://jr-repository.github.io/artWeb/
 
 ## Cara Deploy Website ini
 
-### Opsi 1: Deploy Manual dengan Netlify
+### Opsi 1: Deploy Manual dengan GitHub Pages
 
 1. **Fork atau Clone Repository**
    ```sh
@@ -27,34 +27,29 @@ artWeb adalah perusahaan penyedia jasa pembuatan website profesional berbasis di
    npm run build
    ```
 
-4. **Deploy ke Netlify**
-   - Buat akun di [Netlify](https://www.netlify.com/)
-   - Klik "New site from Git"
-   - Pilih GitHub dan repository artWeb
-   - Konfigurasi pengaturan build:
-     - Build command: `npm run build`
-     - Publish directory: `dist`
-   - Klik "Deploy site"
+4. **Deploy ke GitHub Pages Secara Manual**
+   - Pastikan branch `gh-pages` sudah dibuat di repository
+   - Copy semua file dari folder `dist` ke branch `gh-pages`
+   - Push perubahan ke GitHub
+   ```sh
+   git checkout -b gh-pages
+   cp -r dist/* .
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push origin gh-pages
+   ```
 
-### Opsi 2: GitHub Actions untuk Auto Deploy ke Netlify
+### Opsi 2: GitHub Actions untuk Auto Deploy ke GitHub Pages
 
-1. **Setup Netlify**
-   - Buat site baru di Netlify
-   - Dapatkan Site ID dan Personal Access Token dari Netlify
-     - Site ID: Dashboard Netlify > Site settings > General > Site details > API ID
-     - Access Token: User Settings > Applications > Personal access tokens > New access token
+1. **Setup GitHub Repository**
+   - Buka repository GitHub > Settings > Pages
+   - Di bagian "Source", pilih "GitHub Actions"
 
-2. **Setup GitHub Secrets**
-   - Buka repository GitHub > Settings > Secrets and variables > Actions
-   - Tambahkan secrets berikut:
-     - `NETLIFY_SITE_ID`: [Site ID dari Netlify]
-     - `NETLIFY_AUTH_TOKEN`: [Personal access token dari Netlify]
-
-3. **Buat GitHub Actions Workflow**
+2. **Buat GitHub Actions Workflow**
    - Buat file `.github/workflows/deploy.yml` dengan konfigurasi berikut:
 
 ```yaml
-name: Deploy to Netlify
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -66,7 +61,8 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -79,32 +75,28 @@ jobs:
       - name: Build
         run: npm run build
           
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          branch: gh-pages
+          folder: dist
 ```
 
-4. **Commit dan Push GitHub Actions Workflow**
+3. **Commit dan Push GitHub Actions Workflow**
    ```sh
    mkdir -p .github/workflows
    # Salin konfigurasi workflow ke .github/workflows/deploy.yml
    git add .github/workflows/deploy.yml
-   git commit -m "Add GitHub Actions workflow for Netlify deployment"
+   git commit -m "Add GitHub Actions workflow for GitHub Pages deployment"
    git push
    ```
 
-5. **Verifikasi Auto Deployment**
+4. **Verifikasi Auto Deployment**
    - Buat perubahan kecil pada repository
    - Push perubahan ke branch main
    - Periksa tab "Actions" di GitHub untuk melihat workflow berjalan
-   - Setelah selesai, site akan otomatis terupdate di Netlify
+   - Setelah selesai, site akan otomatis terupdate di GitHub Pages
+   - Website akan tersedia di URL: https://jr-repository.github.io/artWeb/
 
 ### Opsi 3: Deploy ke Vercel
 
