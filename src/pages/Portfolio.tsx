@@ -29,18 +29,18 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-16">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 px-6 bg-gradient-to-r from-artweb-50 to-blue-50">
-          <div className="container-custom">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-block px-3 py-1 rounded-full bg-artweb-100 text-artweb-700 text-sm font-medium mb-6">
+        <section className="py-10 md:py-16 px-4 bg-gradient-to-r from-artweb-50 to-blue-50">
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="inline-block px-2 py-1 rounded-full bg-artweb-100 text-artweb-700 text-xs font-medium mb-4">
                 Portfolio
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="text-2xl md:text-3xl font-bold mb-3">
                 Karya <span className="bg-clip-text text-transparent bg-blue-gradient">Terbaik</span> Kami
               </h1>
-              <p className="text-xl text-gray-600">
+              <p className="text-sm md:text-base text-gray-600">
                 Lihat beberapa proyek website terbaik yang telah kami kerjakan untuk klien dari berbagai industri.
               </p>
             </div>
@@ -48,16 +48,18 @@ const Portfolio = () => {
         </section>
 
         {/* Portfolio Grid */}
-        <section className="py-16 px-6 bg-white">
-          <div className="container-custom">
+        <section className="py-10 px-4 bg-white">
+          <div className="max-w-5xl mx-auto">
             {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="flex flex-wrap justify-center gap-2 mb-8 overflow-x-auto pb-2">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={filter === category ? 'default' : 'outline'}
                   onClick={() => setFilter(category)}
+                  size="sm"
                   className={`
+                    text-xs px-3 py-1 h-auto
                     ${filter === category 
                       ? 'bg-artweb-600 hover:bg-artweb-700' 
                       : 'border-artweb-200 hover:border-artweb-300 hover:bg-artweb-50'
@@ -70,8 +72,8 @@ const Portfolio = () => {
               ))}
             </div>
 
-            {/* Portfolio Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Portfolio Grid - Now 2 columns on small screens */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
               {filteredItems.map((project, index) => (
                 <div 
                   key={project.id} 
@@ -85,12 +87,13 @@ const Portfolio = () => {
 
             {/* Empty state */}
             {filteredItems.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500 mb-4">Tidak ada proyek dalam kategori ini saat ini.</p>
+              <div className="text-center py-8">
+                <p className="text-gray-500 text-sm mb-3">Tidak ada proyek dalam kategori ini saat ini.</p>
                 <Button 
                   onClick={() => setFilter('all')}
                   variant="outline"
-                  className="border-artweb-200 hover:border-artweb-300 hover:bg-artweb-50"
+                  size="sm"
+                  className="border-artweb-200 hover:border-artweb-300 hover:bg-artweb-50 text-xs"
                 >
                   Lihat Semua Proyek
                 </Button>
@@ -99,86 +102,75 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="py-16 px-6 bg-gray-50">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <div className="inline-block px-3 py-1 rounded-full bg-artweb-50 text-artweb-600 text-sm font-medium mb-4">
+        {/* Process Section - Simpler version */}
+        <section className="py-10 px-4 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-block px-2 py-1 rounded-full bg-artweb-50 text-artweb-600 text-xs font-medium mb-2">
                 Proses Kami
               </div>
-              <h2 className="text-3xl font-bold mb-4">Bagaimana Kami Bekerja</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <h2 className="text-xl font-bold mb-2">Bagaimana Kami Bekerja</h2>
+              <p className="text-sm text-gray-600 max-w-lg mx-auto">
                 Pendekatan kami untuk setiap proyek memastikan hasil yang berkualitas dan sesuai dengan visi Anda.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="relative mx-auto mb-6">
-                  <div className="w-20 h-20 bg-blue-gradient rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto">
-                    1
-                  </div>
-                  <div className="absolute top-1/2 left-full w-full h-1 bg-gradient-to-r from-artweb-500 to-transparent -translate-y-1/2 hidden lg:block"></div>
+                <div className="w-10 h-10 bg-blue-gradient rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-2">
+                  1
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Discovery</h3>
-                <p className="text-gray-600">
-                  Memahami bisnis, tujuan, dan kebutuhan spesifik Anda.
+                <h3 className="text-sm font-semibold mb-1">Discovery</h3>
+                <p className="text-gray-600 text-xs">
+                  Memahami kebutuhan bisnis Anda.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="relative mx-auto mb-6">
-                  <div className="w-20 h-20 bg-blue-gradient rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto">
-                    2
-                  </div>
-                  <div className="absolute top-1/2 left-full w-full h-1 bg-gradient-to-r from-artweb-500 to-transparent -translate-y-1/2 hidden lg:block"></div>
+                <div className="w-10 h-10 bg-blue-gradient rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-2">
+                  2
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Design</h3>
-                <p className="text-gray-600">
-                  Menciptakan UI/UX yang menarik dan sesuai dengan brand Anda.
+                <h3 className="text-sm font-semibold mb-1">Design</h3>
+                <p className="text-gray-600 text-xs">
+                  Menciptakan UI/UX yang menarik.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="relative mx-auto mb-6">
-                  <div className="w-20 h-20 bg-blue-gradient rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto">
-                    3
-                  </div>
-                  <div className="absolute top-1/2 left-full w-full h-1 bg-gradient-to-r from-artweb-500 to-transparent -translate-y-1/2 hidden lg:block"></div>
+                <div className="w-10 h-10 bg-blue-gradient rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-2">
+                  3
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Development</h3>
-                <p className="text-gray-600">
-                  Mengembangkan website dengan kode berkualitas tinggi.
+                <h3 className="text-sm font-semibold mb-1">Development</h3>
+                <p className="text-gray-600 text-xs">
+                  Mengembangkan kode berkualitas tinggi.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="mx-auto mb-6">
-                  <div className="w-20 h-20 bg-blue-gradient rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto">
-                    4
-                  </div>
+                <div className="w-10 h-10 bg-blue-gradient rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-2">
+                  4
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Delivery</h3>
-                <p className="text-gray-600">
-                  Meluncurkan website dan memberikan support berkelanjutan.
+                <h3 className="text-sm font-semibold mb-1">Delivery</h3>
+                <p className="text-gray-600 text-xs">
+                  Meluncurkan dan mendukung website.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-6 bg-blue-gradient text-white">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        {/* CTA Section - Simpler version */}
+        <section className="py-10 px-4 bg-blue-gradient text-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-lg mx-auto text-center">
+              <h2 className="text-xl md:text-2xl font-bold mb-3">
                 Siap Membuat Proyek Anda Selanjutnya?
               </h2>
-              <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+              <p className="text-sm md:text-base opacity-90 mb-5">
                 Diskusikan ide proyek Anda dengan tim kami dan lihat bagaimana kami dapat membantu mewujudkannya.
               </p>
-              <Button asChild className="bg-white text-artweb-700 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 px-6 py-6 text-base">
-                <a href="https://wa.me/6281573635143?text=Halo%20artWeb,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20website." target="_blank" rel="noopener noreferrer">
+              <Button asChild size="sm" className="bg-white text-artweb-700 hover:bg-gray-100 shadow-sm hover:shadow-md">
+                <a href="https://wa.me/081573635143?text=Halo%20artWeb,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20website." target="_blank" rel="noopener noreferrer">
                   Mulai Proyek Anda
                 </a>
               </Button>

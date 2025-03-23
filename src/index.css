@@ -35,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -87,29 +87,33 @@
     @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-glass;
   }
 
+  /* Simplified spacing for smaller screens */
   .section-padding {
-    @apply py-20 md:py-24 px-6 md:px-8;
+    @apply py-10 md:py-16 px-4 md:px-6;
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-5xl mx-auto px-4;
   }
 
   .heading-gradient {
     @apply bg-clip-text text-transparent bg-blue-gradient font-bold;
   }
 
+  /* Simplified card hover */
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-card-hover;
+    @apply transition-all duration-300 hover:shadow-sm;
   }
 
+  /* Simplified link underline */
   .link-underline {
     @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-artweb-500 after:transition-all after:duration-300 hover:after:w-full;
   }
 
+  /* Background texture with lower opacity */
   .bg-grain {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.03;
+    opacity: 0.02;
   }
 }
 
@@ -118,41 +122,41 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom loading effect for images */
+/* Custom loading effect for images - simplified */
 .image-fade-in {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .image-fade-in.loaded {
   opacity: 1;
 }
 
-/* Whatsapp button animation */
+/* Simplified whatsapp button animation */
 .whatsapp-btn {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .whatsapp-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-/* Focus states */
+/* Focus states - simplified */
 button:focus, a:focus {
-  outline: 2px solid rgba(0, 119, 255, 0.5);
-  outline-offset: 2px;
+  outline: 1px solid rgba(0, 119, 255, 0.3);
+  outline-offset: 1px;
 }
 
-/* Page transitions */
+/* Simplified page transitions */
 .page-transition-enter {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(5px);
 }
 
 .page-transition-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 200ms, transform 200ms;
 }
 
 .page-transition-exit {
@@ -161,5 +165,56 @@ button:focus, a:focus {
 
 .page-transition-exit-active {
   opacity: 0;
-  transition: opacity 300ms;
+  transition: opacity 200ms;
+}
+
+/* Special styling for mobile viewports */
+@media (max-width: 450px) {
+  /* Make portfolio cards 2 columns */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Service card slider */
+  .service-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
+  }
+
+  .service-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-slider > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 85%;
+    margin-right: 0.75rem;
+  }
+
+  /* Simplified text for mobile */
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+
+  .mobile-text-xs {
+    font-size: 0.75rem;
+  }
+  
+  /* Reduced spacing */
+  .mobile-py-sm {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .mobile-px-sm {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }

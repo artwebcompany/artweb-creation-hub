@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
-import { whatsappGeneralLink } from '@/utils/data';
 
 const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMessageVisible, setIsMessageVisible] = useState(false);
+  const whatsappNumber = "081573635143";
+  const whatsappGeneralLink = `https://wa.me/${whatsappNumber}?text=Halo%20artWeb,%20saya%20tertarik%20dengan%20layanan%20pembuatan%20website.`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,18 +44,18 @@ const WhatsAppButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-end flex-col">
+    <div className="fixed bottom-4 right-4 z-50 flex items-end flex-col">
       {/* Message Bubble */}
       {isMessageVisible && (
-        <div className="mb-4 bg-white rounded-xl shadow-lg p-4 max-w-xs animate-scale-in">
+        <div className="mb-3 bg-white rounded-lg shadow-md p-3 max-w-[220px] animate-scale-in">
           <button 
             onClick={closeMessage}
-            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            className="absolute top-1 right-1 text-gray-400 hover:text-gray-600"
             aria-label="Close message"
           >
-            <X size={16} />
+            <X size={14} />
           </button>
-          <p className="text-gray-700 text-sm">
+          <p className="text-gray-700 text-xs pr-3">
             Butuh bantuan? Konsultasikan kebutuhan website Anda dengan tim kami sekarang!
           </p>
         </div>
@@ -66,10 +67,10 @@ const WhatsAppButton = () => {
           href={whatsappGeneralLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="whatsapp-btn bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center animate-scale-in"
+          className="whatsapp-btn bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-md flex items-center justify-center animate-scale-in"
           aria-label="Contact us on WhatsApp"
         >
-          <MessageCircle size={28} />
+          <MessageCircle size={22} />
         </a>
       )}
     </div>
